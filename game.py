@@ -4,7 +4,7 @@ import random
 
 listOfReply = ['Enter 1 to go to the cave',
                'Enter 2 to go to the house']
-listEnt1 = ['you reach a crosstoads, would you like to left or right? ',
+listEnt1 = ['you reach a crosstoads, would you like to go left or right? ',
             'There are wolfs, Enter: 2 to lgiht a fire or 3 to find another cave: ']
 liseattach = ['you lost the game', 'take the hummer and fight']
 ready = ['you are win', 'you are lost']
@@ -17,12 +17,11 @@ def play():
             yes()
             break
         elif ans.strip().lower() == 'no':
-            break
+            exit()
 
 
 def yes():
     while True:
-
         print('Enter 1 to go to the cave')
         time.sleep(1)
         print('Enter 2 to go to the house')
@@ -30,41 +29,57 @@ def yes():
         ansYesNo = input('Enter here:')
         if ansYesNo.lower().strip() == '1':
             time.sleep(1)
-            y = input(random.choice(listEnt1))
-            if y.lower().strip() == 'left':
-                ann = input(
-                    'you encounter a crocodile, would you like to attack or run?')
-                if ann.lower().strip() == 'attack':
-                    print('that was not the greatst idea, you lost')
-                elif ann.lower().strip() == 'run':
+            while True:
+                y = input(random.choice(listEnt1))
+                if y.lower().strip() == 'left':
+                    while True:
+                        ann = input(
+                            'you encounter a crocodile, would you like to attack or run?')
+                        if ann.lower().strip() == 'attack':
+                            print('that was not the greatst idea, you lost')
+                            play()
+                        elif ann.lower().strip() == 'run':
+                            time.sleep(1)
+                            print('that is good choice, you win')
+                            time.sleep(1)
+                            play()
+                elif y.lower().strip() == 'right':
+                    while True:
+                        time.sleep(1)
+                        print('you walk without aim, and fall in ice lake')
+                        time.sleep(1)
+                        print('and injured your leg, you can not continue.')
+                        print('GAME OVER')
+                        time.sleep(1)
+                        play()
+                elif y.lower().strip() == '2':
+                    while True:
+                        time.sleep(1)
+                        print(
+                            'Enter 1 to stay calm and have something to eat till the morning')
+                        time.sleep(1)
+                        print('Enter 2 to make the wolfs go away')
+                        time.sleep(1)
+                        n = input('Enter here :')
+                        if n.lower().strip() == '1':
+                            time.sleep(1)
+                            print('right call, you win')
+                            play()
+                        elif n.lower().strip() == '2':
+                            time.sleep(1)
+                            print('very brave, but there are too many wolfs,')
+                            time.sleep(1)
+                            print('they attacked you, and you are very injured,')
+                            print('GAME OVER')
+                            play()
+                elif y.lower().strip() == '3':
                     time.sleep(1)
-                    print('that is good choice')
+                    print('right call,')
+                    print('keep walling for three minutes')
+                    print(' there is a big cave next to the Lake')
+                    print('you win')
                     time.sleep(1)
-            elif y.lower().strip() == 'right':
-                time.sleep(1)
-                print(
-                    'you walk without aim, and fall in ice lake and injured your leg, you can not continue. GAME OVER')
-                time.sleep(1)
-            elif y.lower().strip() == '2':
-                time.sleep(1)
-                print('Enter 1 to stay calm and have something to eat till the morning')
-                time.sleep(1)
-                print('Enter 2 to make the wolfs go away')
-                time.sleep(1)
-                n = input('Enter here :')
-                if n.lower().strip() == '1':
-                    time.sleep(1)
-                    print('right call')
-                elif n.lower().strip() == '2':
-                    time.sleep(1)
-                    print(
-                        'very brave, but there are too many wolfs, they attacked you, and you are very injured, GAME OVER')
-            elif y.lower().strip() == '3':
-                time.sleep(1)
-                print(
-                    'right call, keep walling for three minutes there is a big cave next to the Lake')
-            time.sleep(1)
-            play()
+                    play()
         elif ansYesNo.lower().strip() == '2':
             time.sleep(2)
             attachORrun()
@@ -73,10 +88,10 @@ def yes():
 
 def attachORrun():
     while True:
-        ans = input('there is a monster in the house!! (attach/run)')
-        if ans.strip().lower() == 'attach':
+        ans = input('there is a monster in the house!! (attack/run)')
+        if ans.strip().lower() == 'attack':
             time.sleep(2)
-            res = 'take the hummer'
+            print('take the hummer')
             finalStep()
             play()
         elif ans.strip().lower() == 'run':
